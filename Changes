@@ -2,3 +2,6 @@ Revision history for Perl extension Apache::SSLLookup
 
 2.00_01  11.02.2004
   - original version
+
+2.00_02  11.11.2004
+  - test updates - no code changes

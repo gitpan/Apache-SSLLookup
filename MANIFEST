@@ -7,9 +7,10 @@ t/conf/ssl/ssl.last.conf.in
 t/live/01api.t
 t/live/all.t
 t/response/TestLive/01api.pm
-t/response/TestSSL/01new.pm
-t/response/TestSSL/02https.pm
-t/response/TestSSL/03lookup.pm
+t/response/TestSSL/01compile.pm
+t/response/TestSSL/02new.pm
+t/response/TestSSL/03https.pm
+t/response/TestSSL/04lookup.pm
 typemap
 META.yml                                 Module meta-data (added by MakeMaker)
 README

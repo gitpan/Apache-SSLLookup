@@ -1,4 +1,4 @@
-package TestSSL::01new;
+package TestSSL::01compile;
 
 use strict;
 use warnings FATAL => qw(all);
@@ -7,19 +7,13 @@ use Apache::Test qw(-withtestmore);
 
 use Apache::Const -compile => qw(OK);
 
-use Apache::SSLLookup;
-
 sub handler {
 
   my $r = shift;
 
-  plan $r, tests => 2;
+  plan $r, tests => 1;
 
-  $r = Apache::SSLLookup->new($r);
-
-  isa_ok($r, 'Apache::SSLLookup');
-
-  can_ok($r, 'new');
+  use_ok('Apache::SSLLookup');
 
   return Apache::OK;
 }
