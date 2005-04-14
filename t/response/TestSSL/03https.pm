@@ -5,7 +5,7 @@ use warnings FATAL => qw(all);
 
 use Apache::Test qw(-withtestmore);
 
-use Apache::Const -compile => qw(OK);
+use Apache2::Const -compile => qw(OK);
 
 sub handler {
 
@@ -25,10 +25,10 @@ sub handler {
     $r = Apache::SSLLookup->new($r);
 
     ok(defined $r->is_https,
-       'is https returned a defined value');
+       'is_https() returned a defined value');
   }
 
-  return Apache::OK;
+  return Apache2::Const::OK;
 }
 
 1;

@@ -2,7 +2,6 @@
 
 use 5.008001;
 
-use Apache2 ();
 use ModPerl::MM ();
 use Apache::TestMM qw(test clean);
 use Apache::TestRunPerl ();
@@ -18,6 +17,6 @@ EOF
 ModPerl::MM::WriteMakefile(
   NAME          => 'Apache::SSLLookup',
   VERSION_FROM  => 'SSLLookup.pm',
-  PREREQ_PM     => { mod_perl    => 1.9916 },
+  PREREQ_PM     => { mod_perl2 => 0 },
   TYPEMAPS      => [qw(typemap)],
 );

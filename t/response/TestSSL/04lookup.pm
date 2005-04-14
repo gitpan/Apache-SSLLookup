@@ -5,7 +5,7 @@ use warnings FATAL => qw(all);
 
 use Apache::Test qw(-withtestmore);
 
-use Apache::Const -compile => qw(OK);
+use Apache2::Const -compile => qw(OK);
 
 sub handler {
 
@@ -28,7 +28,7 @@ sub handler {
        'non-existent ssl variable returned false');
   }
 
-  return Apache::OK;
+  return Apache2::Const::OK;
 }
 
 1;

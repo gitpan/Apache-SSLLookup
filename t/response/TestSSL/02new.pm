@@ -5,13 +5,13 @@ use warnings FATAL => qw(all);
 
 use Apache::Test qw(-withtestmore);
 
-use Apache::Const -compile => qw(OK);
+use Apache2::Const -compile => qw(OK);
 
 sub handler {
 
   my $r = shift;
 
-  plan $r, tests => 4;
+  plan $r, tests => 6;
 
   { 
     use_ok('Apache::SSLLookup');
@@ -22,11 +22,27 @@ sub handler {
   }
 
   {
+    eval { $r = Apache::SSLLookup->new() };
+
+    like ($@,
+          qr/Usage:/,
+          'new() requires arguments');
+  }
+
+  {
+    eval { $r = Apache::SSLLookup->new({}) };
+
+    like ($@,
+          qr/method `new' invoked by a `unknown' object with no `r' key/,
+          'new() requires an object');
+  }
+
+  {
     eval { $r = Apache::SSLLookup->new(bless {}, 'foo') };
 
     like ($@,
           qr/method `new' invoked by a `foo' object with no `r' key/,
-          'new() requires an Apache::RequestRec object');
+          'new() requires an Apache2::RequestRec object');
   }
 
   {
@@ -35,7 +51,7 @@ sub handler {
     isa_ok($r, 'Apache::SSLLookup');
   }
 
-  return Apache::OK;
+  return Apache2::Const::OK;
 }
 
 1;

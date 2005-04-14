@@ -5,7 +5,7 @@ use warnings FATAL => qw(all);
 
 use Apache::Test qw(-withtestmore);
 
-use Apache::Const -compile => qw(OK);
+use Apache2::Const -compile => qw(OK);
 
 use Apache::SSLLookup;
 
@@ -13,7 +13,7 @@ sub handler {
 
   my $r = shift;
 
-  plan $r, tests => 3;
+  plan $r, tests => 5;
 
   $r = Apache::SSLLookup->new($r);
 
@@ -32,7 +32,24 @@ sub handler {
      'NONE',
      'SSL_CLIENT_VERIFY returned ssl.conf value');
 
-  return Apache::OK;
+  SKIP : {
+    skip 'apache 2.1.3 required', 1
+      unless have_min_apache_version('2.1.3');
+
+    TODO : {
+      local $TODO = "ext_lookup() is experimental";
+
+      is($r->ext_lookup('2.5.4.3'),
+         '???',
+         'server');
+
+      is($r->ext_lookup('2.5.4.3', 1),
+         '???',
+         'client');
+    }
+  }
+
+  return Apache2::Const::OK;
 }
 
 1;

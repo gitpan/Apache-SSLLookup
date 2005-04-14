@@ -9,7 +9,7 @@
 PerlModule Apache::SSLLookup
 
 <IfModule @ssl_module@>
-  <VirtualHost @ssl_module_name@>
+  <VirtualHost TestLive>
     SSLEngine on
     SSLCertificateFile @SSLCA@/asf/certs/server.crt
     SSLCertificateKeyFile @SSLCA@/asf/keys/server.pem

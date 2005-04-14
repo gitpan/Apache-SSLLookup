@@ -6,6 +6,7 @@ SSLLookup.xs
 t/conf/ssl/ssl.last.conf.in
 t/live/01api.t
 t/live/all.t
+t/ssl/all.t
 t/response/TestLive/01api.pm
 t/response/TestSSL/01compile.pm
 t/response/TestSSL/02new.pm
