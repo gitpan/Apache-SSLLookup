@@ -118,3 +118,6 @@ ext_lookup(r, oid, peer = 0)
 
   OUTPUT:
     RETVAL
+
+BOOT:
+    av_push(perl_get_av("Apache::SSLLookup::ISA",TRUE), newSVpv("Apache2::RequestRec",19));

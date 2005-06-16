@@ -11,7 +11,7 @@ sub handler {
 
   my $r = shift;
 
-  plan $r, tests => 6;
+  plan $r, tests => 7;
 
   { 
     use_ok('Apache::SSLLookup');
@@ -49,6 +49,8 @@ sub handler {
     $r = Apache::SSLLookup->new($r);
 
     isa_ok($r, 'Apache::SSLLookup');
+
+    isa_ok($r, 'Apache2::RequestRec');
   }
 
   return Apache2::Const::OK;

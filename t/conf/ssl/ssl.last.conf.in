@@ -20,3 +20,10 @@ PerlModule Apache::SSLLookup
     </Location>
   </VirtualHost>
 </IfModule>
+
+# Devel::Cover integration
+
+# pass these to modperl_extra.pl
+PerlPassEnv HARNESS_PERL_SWITCHES
+PerlPassEnv APACHE_TEST_NO_STICKY_PREFERENCES
+

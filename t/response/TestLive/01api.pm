@@ -13,7 +13,7 @@ sub handler {
 
   my $r = shift;
 
-  plan $r, tests => 5;
+  plan $r, tests => 6;
 
   $r = Apache::SSLLookup->new($r);
 
@@ -33,7 +33,7 @@ sub handler {
      'SSL_CLIENT_VERIFY returned ssl.conf value');
 
   SKIP : {
-    skip 'apache 2.1.3 required', 1
+    skip 'apache 2.1.3 required', 2 
       unless have_min_apache_version('2.1.3');
 
     TODO : {
@@ -48,6 +48,14 @@ sub handler {
          'client');
     }
   }
+
+  # can we still call $r methods?
+
+  my $ct = $r->content_type;
+
+  like ($ct,
+        qr!text/plain!,
+        'successfully called $r->content_type()');
 
   return Apache2::Const::OK;
 }
